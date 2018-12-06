@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Test</title>
+    <style type="text/css">
+        * {
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .btn {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            background: green;
+            color: #fff;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        .container {
+            background: #e5e5e5;
+        }
+    </style>
+
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.runoob.com/assets/qrcode/qrcode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/html2canvas/0.4.1/html2canvas.js"></script>
+
+    <!--将httpurl变成base64-->
+    <script type="text/javascript">
+
+	  url="http://img14.360buyimg.com/n1/jfs/t1/556/6/3060/184501/5b976d75E9f945da0/0372e222c24ea8f1.jpg"
+	 $.ajax({
+               type: "GET",
+               url: "http://api.kuayet.com:8080/crossindustry/image/convert?url="+url,
+               success:function(data){
+			   
+			    $("#images").attr("src", data);
+			   }
+
+            })
+	
+
+
+    </script>
+    <script>
+
+        $(function () {
+            $("#btn").click(function () {
+                html2canvas($("#container"), {
+                    onrendered: function (canvas) {
+                        //把截取到的图片替换到a标签的路径下载
+                        $("#download").attr('href', canvas.toDataURL());
+                        //下载下来的图片名字
+                        $("#download").attr('download', 'share.png');
+                        document.body.appendChild(canvas);
+                    }
+//可以带上宽高截取你所需要的部分内容
+//     ,
+//     width: 300,
+//     height: 300
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div style="padding:10px 0">
+    <div class="btn" id="btn">截取屏幕</div>
+    <p style="color:red; text-align:center;">先点击截取屏幕后再点击截图下载</p>
+    <div style="margin-top:10px">
+        <a href="javascript:;" rel="external nofollow" class="btn" id="download">截图下载</a>
+    </div>
+</div>
+<div class="container" id="container">
+    <input id="text" type="text" value="http://www.runoob.com" style="width:80%"/><br/>
+    <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+
+    <script type="text/javascript">
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            width: 100,
+            height: 100
+        });
+
+        function makeCode() {
+            var elText = document.getElementById("text");
+
+            if (!elText.value) {
+                alert("Input a text");
+                elText.focus();
+                return;
+            }
+
+            qrcode.makeCode(elText.value);
+        }
+
+        makeCode();
+
+        $("#text").on("blur", function () {
+            makeCode();
+        }).on("keydown", function (e) {
+            if (e.keyCode == 13) {
+                makeCode();
+            }
+        });
+    </script>
+    <p style="text-align:center">以下是测试内容</p>
+    <h2>我是美女，你是不是啊，我是个大美女，你是不是啊</h2>
+
+    <img id="images" src=""/>
+</div>
+</body>
+</html>
