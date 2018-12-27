@@ -176,7 +176,7 @@ const api = {
 	getStoreList(params){
     	return axios.request({
 			method:'get',
-			url:config.baseUrl+'/crossindustry/shopManage/shopList',
+			url:'/api'+'/crossindustry/shopManage/shopList',
 			params:params
 		})
 	},
@@ -616,7 +616,16 @@ const api = {
 			url:config.baseUrl + '/crossindustry/userManage/alterAdm',
 			params: params
 		})
+	},
+	// 结算接口
+    jiesuanByDate (params) {
+    	return axios.request({
+			method: 'get',
+			url:config.baseUrl + '/crossindustry/purchaseManage/jiesuanByDate',
+			params: params
+		})
 	}
+
 }
 
 export default class Api {

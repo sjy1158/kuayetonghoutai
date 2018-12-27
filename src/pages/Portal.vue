@@ -76,6 +76,7 @@
                     </template>
                     <el-menu-item index="/purchaseHeader">电商购头部分类</el-menu-item>
                     <el-menu-item index="/purchaseOrder">电商购订单</el-menu-item>
+                    <el-menu-item index="/leadingIn">电商购订单导入</el-menu-item>
                     <el-menu-item index="/chongfuOrder">重复订单</el-menu-item>
                     <el-menu-item index="/electricitySupplier">电商购分类列表</el-menu-item>
                     <el-menu-item index="/qrcodeList">电商购编辑缩略图</el-menu-item>

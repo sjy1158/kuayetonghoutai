@@ -28,12 +28,12 @@
                     <el-table-column
                             prop="title"
                             label="商家名称"
-                            width="200">
+                            width="150">
                     </el-table-column>
                     <el-table-column
                             prop="name"
                             label="姓名"
-                            width="200">
+                            width="150">
                     </el-table-column>
                     <el-table-column
                             prop="specificAddress"
@@ -43,22 +43,32 @@
                     <el-table-column
                             prop="salesVolume"
                             label="销量"
-                            width="200">
+                            width="150">
                     </el-table-column>
                     <el-table-column
                             prop="shopType"
                             label="商家类型"
-                            width="200">
+                            width="150">
                     </el-table-column>
                     <el-table-column
                             prop="phone"
                             label="手机号"
-                            width="200">
+                            width="150">
                     </el-table-column>
+                    <el-table-column
+                            prop="activationCode"
+                            label="激活码"
+                            width="150">
+                    </el-table-column>
+                    <!--<el-table-column-->
+                            <!--prop="aliAccount"-->
+                            <!--label="绑定手机号"-->
+                            <!--width="150">-->
+                    <!--</el-table-column>-->
                     <el-table-column
                             prop="shopHeadImageUrl"
                             label="图片地址"
-                            width="200">
+                            width="150">
                         <template slot-scope="scope">
                             <img :src="scope.row.shopHeadImageUrl" alt="" style="width: 50px;height: 50px;">
                         </template>
@@ -68,6 +78,7 @@
                             <el-button type="danger" @click="disconSet(scope.row.shopId)" size="small">折扣设置</el-button>
                             <el-button type="primary" @click="openchange2(scope.row.shopId,scope.row)" size="small">修改</el-button>
                             <el-button type="danger" @click="deleteList(scope.row.shopId)" size="small">删除</el-button>
+                            <el-button type="danger" @click="getCode(scope.row.userId,scope.row.shopId)" size="small">生成激活码</el-button>
                         </template>
                     </el-table-column>
                 </el-table>
@@ -117,7 +128,8 @@
                     name:'',
                     phone:'',
                     pageNum:1,
-                    num:10
+                    num:10,
+                    userId: ''
                 },
                 formInline2:{
                     id:'',
@@ -222,6 +234,12 @@
                         rows:obj
                     }
                 })
+            },
+            // 生成激活码
+            getCode (userid,shopid) {
+                this.formInline.id = shopid
+                this.formInline.userId = userid
+                this.getList(this.formInline)
             }
         },
         mounted(){

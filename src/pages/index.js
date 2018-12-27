@@ -70,6 +70,7 @@ import addDongtai from './addDongtai'
 import addAdm from './addAdm'
 import changheader from './changheader'
 import chongfuOrder from './chongfuOrder'
+import leadingIn from './leadingIn'
 export {
 	Login,
 	Portal,
@@ -142,5 +143,6 @@ export {
     addDongtai,
     addAdm,
     changheader,
-    chongfuOrder
+    chongfuOrder,
+    leadingIn
 }

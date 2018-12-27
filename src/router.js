@@ -72,7 +72,8 @@ import {
     addDongtai,
     addAdm,
     changheader,
-    chongfuOrder
+    chongfuOrder,
+    leadingIn
 } from '@/pages'
 
 Vue.use(Router)
@@ -384,6 +385,10 @@ var router = new Router({
 				{
 					path:'/chongfuOrder',
 					component:chongfuOrder
+				},
+				{
+					path: '/leadingIn',
+					component:leadingIn
 				}
 			]
 		},
